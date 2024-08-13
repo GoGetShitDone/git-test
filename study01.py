@@ -1,3 +1,206 @@
+#선수 / 팀, 명단 추가, 제거 / XP 합산관련 -5강 완료!-
+
+class Player: 
+  def __init__(self, name, xp, team):
+    self.name = name
+    self.xp = xp
+    self.team = team
+
+  def introduce(self):
+    print(f"Hey! I'm {self.name} in the {self.team}Team / XP:{self.xp}")
+
+class Team:
+  def __init__(self, team_name):
+    self.team_name = team_name
+    self.players = []
+
+  def show_players(self, exclude_player):
+    print(f"\n{self.team_name} 팀 선수 명단:")
+    total_xp = 0
+    for player in self.players:
+      if player.name != exclude_player:
+        player.introduce()
+        total_xp += player.xp
+      else:
+        total_xp += player.xp
+    print(f"{self.team_name} 팀의 총 XP:{total_xp}")
+    if exclude_player:
+      print(f"*다음 선수는 명단에서 제외되었으나, 팀 XP에는 포함됨 :{exclude_player}")
+
+  def add_player(self, name, xp):
+    new_player = Player(name, xp, self.team_name)
+    self.players.append(new_player)
+    
+t1 = Team("Time")
+t1.add_player("손오공", 999)
+t1.add_player("잔다르크", 900)
+t1.add_player("그루트", 650)
+t1.add_player("루시퍼", 999)
+
+t2 = Team("Space")
+t2.add_player("루피", 999)
+t2.add_player("쵸파",1000)
+t2.add_player("아이언맨",870)
+t2.add_player("토르", 980)
+
+t1.show_players("그루트")
+t2.show_players("아이언맨")
+
+
+#Player
+"""
+class Player: 
+  def __init__(self, name, team):
+    self.name = name
+    self.xp = 1500
+    self.team = team
+
+  def introduce(self):
+    print(f"Hey! I'm {self.name} in the {self.team}Team / XP:{self.xp}")
+
+class Team:
+  def __init__(self, team_name):
+    self.team_name = team_name
+    self.players = []
+
+  def show_players(self):
+    for player in self.players:
+      player.introduce()
+  
+  def add_player(self, name):
+    new_player = Player(name, self.team_name)
+    self.players.append(new_player)
+    
+t1 = Team("Time")
+t1.add_player("David")
+t2 = Team("Space")
+t2.add_player("Ducachi")
+
+t1.show_players()
+t2.show_players()
+"""
+
+"""
+#Class & Inheritance
+class Dog:
+  def __init__(self, name, breed, age):
+    self.name = name
+    self.breed = breed
+    self.age = age
+
+  def sleep(self):
+    print("ZZZZ.....")
+    
+class guard(Dog):
+
+  def __init__(self, name, breed):
+    super().__init__(name, breed, 5,)
+    self.agrrasive = True
+
+  def BARK(self):
+    print("WOOF WOOF!")
+  
+class puppy(Dog):
+  def __init__(self, name, breed):
+    super().__init__(name, breed, 0.1,)
+    self.kindness = True
+    
+  def bark(self):
+    print("woof woof~")
+
+coco = puppy("coco", "pome")
+chico = guard("chico","chihuahua")
+
+coco.bark()
+coco.sleep()
+
+chico.BARK()
+chico.sleep()
+"""
+
+#Class
+"""
+class puppy:
+
+  def __init__(self, name, age, breed):
+    self.name = name
+    self.age = age
+    self.breed = breed
+
+  def __str__(self):
+    return f"{self.name} is a {self.breed} and is {self.age} years old"
+  def bark(self):
+    print("WOOF WOOF!")
+  def introduce(self):
+    self.bark()
+    print(f"Hey My name is {self.name}, {self.age} years old, and {self.breed} ")
+
+coco = puppy(name="coco", age="1", breed="golden retriever")
+cico = puppy("nico", "2", "chihuahua")
+
+
+print(coco)
+coco.bark()
+print(nico)
+coco.bark()
+
+coco.introduce()
+cico.introduce()
+"""
+#Class
+"""
+class puppy:
+  def __init__(self):
+    self.name = "coco"
+    self.age = "5"
+    self.breed = "golden retriever"
+    self.color = "golden"
+
+coco = puppy()
+
+print(
+  coco.name,
+  coco.age,
+  coco.breed,
+  coco.color
+)
+"""
+
+# For Loop / URL formatting / Status Codes
+"""
+from requests import Response, get #패키지 설치를 통해서 가져올 수 있음
+
+websites = (
+  "google.com", 
+  "httpstat.us/101", 
+  "httpstat.us/200",
+  "httpstat.us/308",
+  "httpstat.us/400"
+  "httpstat.us/561"
+)
+
+result = {}
+
+for website in websites:
+  if not website.startswith ("https://"):
+    website = f"https://{website}"
+    response = get(website)    
+  if response.status_code >= 100 and response.status_code < 200:
+    result[website] = "1XX error"
+  elif response.status_code >= 200 and response.status_code < 300:
+    result[website] = "OK"
+  elif response.status_code >= 300 and response.status_code < 400:
+    result[website] = "3XX error"
+  elif response.status_code >= 400 and response.status_code < 500:
+    result[website] = "4XX error" 
+  elif response.status_code >= 500 and response.status_code <= 561:
+    result[website] = "5XX error"
+  else:
+    result[website] = "Failed"
+    
+print(result)
+"""
+
 #Dictionary
 
 player = {
